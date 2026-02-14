@@ -1,0 +1,64 @@
+RRUG UI v1.1.1
+(Reactive Rig UI Generator)
+---
+[Portable Mode]
+Embed rrug_core.py into the Text Editor
+and enable the 'Text > Register' checkbox.
+---
+[Location]
+Viewport:        Sidebar (N-Panel) > Animation (Default).
+                 Configurable via UI_LOCATION_INDEX (0-5) in rrug_core.py.
+Structure:       Single Main Panel containing 4 nested sub-sections:
+                 Workflow, Visibility, Properties, Snapping.
+---
+[Activation]
+Primary:         Add Custom Property "RRUG_UI" (Boolean: True) to Armature Data.
+Gatekeeper:      Main panel only appears when a valid Rig is active in Pose Mode.
+---
+[UI Categories & Root Collections]
+(DISPLAYS)       Root for Visibility Panel.
+(SETTINGS)       Root for Properties Panel.
+(SNAPS)          Root for Snapping Panel.
+(INTERNALS)      Excluded from UI and Search.
+---
+[Syntax Rules]
+Case:            STRICT UPPERCASE for Flags () and Params [].
+Name:            Must use curly braces {Display Name} for the label.
+Format:          {Name} (FLAG) (FLAG)[PARAM]
+---
+[Bone Collection Flags]
+(INLINE)         Layout: Places buttons inline with label (Default: Stacked).
+(LINK)           Links (SETTINGS) collection to the next sibling for syncing.
+(ICON)           Sets row icon. Requires [ICON_NAME] param (e.g., [BONE_DATA]).
+(JOIN)           Merge row with the next sibling in the layout.
+(HIDE)           Auto-hide row if collection visibility is OFF.
+(SKIP)           Exclude hierarchy from UI generation.
+(TO)             Snap Source: Marks collection as source (Next sibling = Target).
+(BOARD)          UI Style: Renders collection as a framed box (Always Open).
+(FILTER)         Search Logic: Exclude from search. Optional [IFHIDDEN].
+---
+[Workflow Features]
+Transform:       Quick-reset buttons for Loc, Rot, Scale, and All transforms.
+Selection:       Targeted resets for 'Selected' or 'Whole Rig' bones.
+Timeline:        Smart Playback Range (detects Preview Range) & Auto-Key.
+Snap Utils:      Bi-directional Cursor <-> Selection snapping (Loc/Rot/All).
+Cursor Axis:     "Zero Axis" tools for specific cursor rotation components.
+---
+[Search & Visibility]
+Get Active:      Eye-dropper icon copies active bone name to search field.
+Isolate:         "Isolate Search" toggle hides non-matching UI groups.
+Select:          Auto-selects and activates the bone found via search.
+Solo Mode:       Isolates visibility of a specific collection and its children.
+Reactive:        UI automatically updates when collections are hidden/shown.
+---
+[Snapping & Sync]
+Mirror Snap:     Enable "Mirror Snap" to flip snap transforms to opposite side (.L/.R).
+Auto Key:        Integrated toggle to auto-insert keys after snap operations.
+Prop Sync:       Sync custom properties between (LINK)ed source and target partners.
+Batch Snap:      One-click snapping for entire bone chains defined by (TO).
+---
+[Specs]
+Refresh Rate:    4.0 FPS (FIXED_FPS).
+Recursion Limit: 8 Levels (MAX_UI_NESTING).
+Blender Ver:     4.2 LTS to 5.0+
+License:         GPL-2.0-or-later
